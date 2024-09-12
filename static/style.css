@@ -1,0 +1,7 @@
+* {
+  font-family: 'Courier New', monospace;
+  margin: auto;
+}
+tr:nth-child(even) {
+  background-color: rgb(135, 135, 135, 0.4);
+}

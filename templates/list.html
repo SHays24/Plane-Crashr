@@ -1,0 +1,30 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block content %}
+<html>  
+   <body>
+     <h1>Plane Crashr Found {%- if rows|length == 0 -%}&nbspNo&nbsp{%- else -%}&nbsp{{ rows|length }} {% endif %}Records</h1>
+      <table border = 1>
+         <thead>
+               <th>Date</th>
+               <th>Location/Operator</th>
+               <th>Aircraft Type/Registration</th>
+               <th>Fatalities</th>
+               <th>People</th>
+               <!--<th>Images</th>-->
+         </thead>
+         {% for row in rows %}
+            <tr>
+               <td>{{row["date"]}}</td>
+               <td>{{row["Location / Operator"]}}</td>
+               <td>{{row["Aircraft Type / Registration"]}}</td>
+               <td>{{row["Fatalities"]}}</td>
+              <td>{{row["People"]}}</td>
+              <!--<td><img src="http://www.planecrashinfo.com/images/n{{ row["date"]|datetime_format }}.jpg" height="100" referrerpolicy="no-referrer"></img></td>, Doesn't work bc http requests and chrome -->
+            </tr>
+         {% endfor %}
+      </table>
+      <a href = "/">Go back to home page</a>
+   </body>
+  {% endblock %}
+</html>

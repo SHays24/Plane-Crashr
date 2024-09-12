@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@easepick/bundle@1.1.7/dist/index.umd.min.js"></script>
+  <script>
+        window.onload = function() { document.querySelector("#submit").addEventListener("click", function(event) {
+           var hcaptchaVal = document.querySelector('[name="h-captcha-response"]').value;
+           if (hcaptchaVal === "") {
+              event.preventDefault();
+              alert("Please complete the hCaptcha");
+           }
+        });
+      }
+      </script>
+  
+</head>
+
+  <body>
+      
+      <form action = "{{ url_for('addrec') }}" method = "POST" id = "form">
+        <h2>PlaneCrashr Database Search</h2>
+        <p>Pleas enter one search term to continue.</p>
+        <p>Year
+        <input type = "number" name = "sev" class = 'group_1' pattern="\d{4}" value=""/></p>
+        <p>Date
+          <input name = "date" pattern="\d{2}\s\w{3}\s\d{4}" class = 'group_1' value="" title="dd mon yyyy e.g. 17 Sep 1908" id="datepicker" autocomplete="off"/></p><script>
+      const picker = new easepick.create({
+    element: "#datepicker",
+    css: [
+        "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.1.7/dist/index.css"
+    ],
+    zIndex: 10,
+    format: "DD MMM YYYY",
+    readonly: false,
+    AmpPlugin: {
+        resetButton: true
+    },
+    plugins: [
+        "AmpPlugin"
+    ]
+}) 
+      </script>
+        <p>Location/Operator
+        <input type = "text" name = "lo" class = 'group_1' value="" /></p>
+        <p>Registration/Model
+        <input type = "text" name = "atr" class = 'group_1' value="" /></p>
+        <p>Fatalities
+        <input type = "number" name = "fat" class = 'group_1' value="" /></p>
+        <p>People
+        <input type = "number" name = "ppl" class = 'group_1' value="" /></p><br/>
+        <div class="h-captcha" data-sitekey={{sitekey}}></div>
+        <input type = "submit" value = "submit" onclick = "" id = "submit"/><br/>
+      </form>
+      
+   </body>
+{% endblock %}
